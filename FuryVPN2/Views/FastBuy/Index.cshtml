@@ -1,0 +1,281 @@
+﻿@using FuryVPN2.Services;
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="~/lib/css/link-font.css">
+    <link rel="stylesheet" href="~/lib/css/style.css">
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
+
+    <link rel="stylesheet" href="~/lib/css/link-font.css">
+    <link rel="stylesheet" href="~/lib/css/style.css">
+
+    <title>Быстрая покупка</title>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(94179123, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+            ecommerce: "dataLayer"
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/94179123" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+
+<body>
+    @section scripts {
+        <script>
+            var screenSize = window.innerWidth; 
+
+            if (screenSize < 768) {
+                document.getElementById("conditionalBlockMobile").style.display = "block";
+                document.getElementById("conditionalBlockPC").style.display = "none";
+            } else {
+                document.getElementById("conditionalBlockMobile").style.display = "none";
+                document.getElementById("conditionalBlockPC").style.display = "block";
+            }
+        </script>
+    }
+        <div id="conditionalBlockMobile">
+            <nav class="nav">
+                <div class="container">
+                    <div class="row">
+                        <ul class="nav__links">
+                            <li>
+                            <a class="nav__link link" style="font-size:12px" href="@Url.Action("ToManual", "Home")">Инструкция</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" style="font-size:12px" href="#tariffs">Тарифы</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" style="font-size:12px" href="https://t.me/furyvpnsupport" target="_blank">Поддержка</a>
+                            </li>
+                            <li>
+
+                                <a class="nav__link btn" style="font-size:12px" href="@Url.Action("Login", "Telegram")">Telegram Авторизация</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+        <div id="conditionalBlockPC">
+            <nav class="nav">
+                <div class="container">
+                    <div class="row">
+                        <a href="@Url.Action("Index", "Home")" class="logo">
+                            <img src="~/lib/img/logo.png" class="logo__img">
+                            <span class="logo__text">Fury VPN</span>
+                        </a>
+                        <ul class="nav__links">
+                            <li>
+                            <a class="nav__link link" href="@Url.Action("ToManual", "Home")">Инструкция</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" href="#tariffs">Тарифы</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" href="https://t.me/furyvpnsupport" target="_blank">Поддержка</a>
+                            </li>
+                            <li>
+
+                                <a class="nav__link btn" href="@Url.Action("Login", "Telegram")">Telegram Авторизация</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    <section class="quick-purchase">
+        <div class="container">
+            <h1 class="title">Быстрая покупка</h1>
+            <p class="quick-purchase__desc">Мы вышлем вам на почту ссылку на скачивание приложения и ключ</p>
+            @using (Html.BeginForm("BuyAction", "FastBuy", FormMethod.Post, new { @class = "form-quick-purchase" }))
+            {
+                @Html.TextBoxFor(email => email, new { @class = "lk__input quick-purchase__input", name="email", type="email", placeholder = "Введите ваш Email..." })
+                @*                <input type="email" required class="lk__input quick-purchase__input" name="email" placeholder="Введите ваш Email...">*@
+                <h3 style="justify-content: center; align-items: center; text-align: center; margin-top:10px; color: #FF5A5A">
+                    @ViewBag.EmailValidation
+                </h3>
+                <div class="quick-purchase__prices">
+                    @if (ViewBag.PromoExistence == null || ViewBag.PromoExistence == "Промокода не существует")
+                    {
+                        <div class="lk__tariff">
+                            <div class="lk__period">1 месяц</div>
+                            <div class="lk__price">199&#8381</div>
+                            <button type="submit" class="lk__link" name="tariff" value="monthWithOutPromo"><span>Купить</span></button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="lk__tariff">
+                            <div class="lk__period">1 месяц</div>
+                            <div class="lk__price"><s>199&#8381</s> <b style="margin-left:5px"> @ViewBag.PriceWithDiscount&#8381</b></div>
+                            <input type="hidden" id="promocode" name="promocode" value="@ViewBag.PromoText" />
+                            <button type="submit" class="lk__link" name="tariff" value="monthWithPromo"><span>Купить</span></button>
+                        </div>
+                    }
+
+                    <div class="lk__tariff">
+                        <div class="lk__period">3 месяца</div>
+                        <div class="lk__price"><s>600&#8381</s> <b style="margin-left:5px"> 499&#8381</b></div>
+                        <button type="submit" class="lk__link" name="tariff" value="3months"><span>Купить</span></button>
+                    </div>
+                    <div class="lk__tariff">
+                        <div class="lk__period">6 месяцев</div>
+                        <div class="lk__price"><s>1500&#8381</s> <b style="margin-left:5px"> 1449&#8381</b></div>
+                        <button type="submit" class="lk__link" name="tariff" value="6months"><span>Купить</span></button>
+                    </div>
+
+                    <div class="lk__tariff">
+                        <div class="lk__period">1 год</div>
+                        <div class="lk__price"><s>2500&#8381</s> <b style="margin-left:5px"> 1999&#8381</b></div>
+                        <button type="submit" class="lk__link" name="tariff" value="year"><span>Купить</span></button>
+                    </div>
+                    <div class="lk__tariff lk__tariff_small">
+                        <div class="lk__period">5 дней</div>
+                        <div class="lk__price">БЕСПЛАТНО</div>
+                        <button type="submit" class="lk__link" name="tariff" value="freeTrial"><span>Получить</span></button>
+                    </div>
+                    @*                    <div class="lk__tariff lk__tariff_small">
+                <div class="lk__period">Тестовый день</div>
+                <div class="lk__price">10р.</div>
+                <button  type="submit" class="lk__link" name="tariff" value="day"><span>Получить</span></button>
+                </div>*@
+
+                </div>
+            }
+
+
+
+            @using (Html.BeginForm("CheckPromoCode", "FastBuy", FormMethod.Post, new { @class = "form-promocode row" }))
+            {
+                @Html.TextBox("code",null, new { @class = "lk__input", placeholder = "Промокод..." })
+                <input type="submit" value="Проверить" class="btn" autocomplete="off" />
+            }
+            <h3 style="justify-content: center; align-items: center; text-align: center; margin-top:10px">
+                @ViewBag.PromoExistence
+            </h3>
+
+
+            <p class="quick-purchase__subdesc">
+                Нажимая кнопку «Оплатить», вы соглашаетесь с <a asp-area="" asp-controller="Home" asp-action="Privacy" target="_blank">
+                    политикой
+                    обработки персональных
+                    данных
+                </a> и с <a asp-area="" asp-controller="Home" asp-action="Offer" target="_blank">договором оферты</a>
+            </p>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <a href="@Url.Action("Index", "Home")" class="logo">
+                    <img src="~/lib/img/logo.png" class="logo__img">
+                    <div>
+                        <div class="logo__text">Fury VPN</div>
+                        <div class="logo__desc">
+                            ИП ГАБОРЧАК ВЛАДИСЛАВ СЕРГЕЕВИЧ <br /> ИНН 615521026680 <br /> ОГРН 323619600120224
+                        </div>
+                    </div>
+                </a>
+                <div class="footer__links">
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Политика конфиденциальности</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Offer">Договор оферты</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        function disableButton() {
+            // Получаем ссылку на кнопку
+            var button = document.getElementById("freeTrialBtn");
+
+            // Блокируем кнопку
+            button.disabled = true;
+
+            // Ждем 20 минут (в миллисекундах) и разблокируем кнопку
+            setTimeout(function () {
+                button.disabled = false;
+            }, 20 * 60 * 1000); // 20 минут в миллисекундах
+        }
+    </script>
+    <script src="~/lib/js/jquery.min.js"></script>
+    @*    <script>
+    $('.form-promocode').on('submit', function (e) {
+    e.preventDefault();
+    const data = {
+    promocode: $(this).find('[name="promocode"]').val().trim()
+    }
+    $.ajax({
+    type: "POST",
+    url: '',
+    data,
+    success: data => {
+    console.log(data);
+    },
+    error: xhr => {
+    console.log('Error', xhr);
+    }
+    })
+    });
+
+    $('[name="email"]').on('input', function () {
+    $(this).removeClass('error');
+    });
+
+    $('.form-quick-purchase button').on('click', function () {
+    const $form = $(this).closest('form');
+    const $email = $form.find('[name="email"]');
+    const value = $(this).data('value');
+    const data = {
+    email: $email.val().trim(),
+    value
+    }
+    console.log(data);
+
+    if (!validateEmail(data.email)) {
+    $email.addClass('error');
+    return;
+    }
+
+    $.ajax({
+    type: "POST",
+    url: '',
+    data,
+    success: data => {
+    console.log(data);
+    },
+    error: xhr => {
+    console.log('Error', xhr);
+    }
+    })
+    });
+
+    function validateEmail(email) {
+    var re =
+    /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@@(?: (?:[a - z0 - 9](?:[a - z0 - 9 -] *[a - z0 - 9]) ?\.)+[a - z0 - 9](?:[a - z0 - 9 -] *[a - z0 - 9])?|\[(?:(?: 25[0 - 5] | 2[0 - 4][0 - 9] |[01]?[0 - 9][0 - 9] ?)\.){ 3} (?: 25[0 - 5] | 2[0 - 4][0 - 9] |[01]?[0 - 9][0 - 9] ?|[a - z0 - 9 -] *[a - z0 - 9] : (?:[\x01 -\x08\x0b\x0c\x0e -\x1f\x21 -\x5a\x53 -\x7f] |\\[\x01-\x09\x0b\x0c\x0e -\x7f])+)\])$/;
+
+    return re.test(email);
+    }
+    </script>*@
+</body>

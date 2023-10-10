@@ -1,0 +1,326 @@
+﻿<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="~/lib/css/link-font.css">
+    <link rel="stylesheet" href="~/lib/css/style.css">
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <title>Главная</title>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(94171500, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+            ecommerce: "dataLayer"
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/94171500" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+</head>
+
+@section scripts {
+    <script>
+        var screenSize = window.innerWidth; 
+
+        if (screenSize < 768) {
+            document.getElementById("conditionalBlockMobile").style.display = "block";
+            document.getElementById("conditionalBlockPC").style.display = "none";
+        } else {
+            document.getElementById("conditionalBlockMobile").style.display = "none";
+            document.getElementById("conditionalBlockPC").style.display = "block";
+        }
+    </script>
+    }
+<body>
+    <div id="conditionalBlockMobile">
+        <nav class="nav" >
+            <div class="container" >
+                <div class="row" >
+                    <ul class="nav__links">
+                        <li>
+                            <a class="nav__link link" style="font-size:12px" href="#manual">Инструкция</a>
+                        </li>
+                        <li>
+                            <a class="nav__link link" style="font-size:12px" href="#tariffs">Тарифы</a>
+                        </li>
+                        <li>
+                            <a class="nav__link link" style="font-size:12px" href="https://t.me/furyvpnsupport" target="_blank">Поддержка</a>
+                        </li>
+                        <li>
+
+                            <a class="nav__link btn" style="font-size:12px" href="@Url.Action("Login", "Telegram")">Telegram Авторизация</a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+       
+    </div>
+    <div id="conditionalBlockPC">
+        <nav class="nav">
+            <div class="container">
+                <div class="row">
+                    <a href="@Url.Action("Index", "Home")" class="logo">
+                        <img src="~/lib/img/logo.png" class="logo__img">
+                        <span class="logo__text">Fury VPN</span>
+                    </a>
+                    <ul class="nav__links">
+                        <li>
+                            <a class="nav__link link" href="#manual">Инструкция</a>
+                        </li>
+                        <li>
+                            <a class="nav__link link" href="#tariffs">Тарифы</a>
+                        </li>
+                        <li>
+                            <a class="nav__link link" href="https://t.me/furyvpnsupport" target="_blank">Поддержка</a>
+                        </li>
+                        <li>
+
+                            <a class="nav__link btn" href="@Url.Action("Login", "Telegram")">Telegram Авторизация</a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <section class="main">
+        <div class="container">
+            <div class="main__content">
+                <img src="~/lib/img/logo-big.png" class="main__img">
+                <div class="best-app">
+                    <img src="~/lib/img/medal.png" class="best-app__img">
+                    <div class="best-app__wrap">
+                        <div class="best-app__subtext">Лучшее приложение</div>
+                        <div class="best-app__text">#1 для работы и досуга</div>
+                    </div>
+                </div>
+
+                <h1 class="main__title" style="text-align:center">Самый быстрый VPN</h1>
+                <p class="main__desc">FuryVPN &mdash; доступ к твоим любимым сервисам, ушедшим из России</p>
+
+
+                <a href="@Url.Action("Index", "FastBuy")" class="btn">Получить</a>
+@*                <a href="@Url.Action("DownloadFile", "Home", new {name = "client"})" class="btn">Получить</a>*@
+
+            </div>
+        </div>
+    </section>
+
+    <section class="why-we">
+        <div class="container">
+            <div class="why-we__content">
+                <h2 class="title">Наш VPN &mdash; лучший на рынке</h2>
+
+                <div class="why-we__img-wrap">
+                    <div class="why-we__img-block">
+                        <img src="~/lib/img/main/why_we.png" class="why-we__img-main">
+                        <img src="~/lib/img/main/1.png" class="why-we__img">
+                        <img src="~/lib/img/main/2.png" class="why-we__img">
+                        <img src="~/lib/img/main/3.png" class="why-we__img">
+                        <img src="~/lib/img/main/4.png" class="why-we__img">
+                        <img src="~/lib/img/main/5.png" class="why-we__img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="manual" id="manual">
+        <div class="container">
+            <div class="manual__content">
+                <h2 class="title manual__title">Инструкция</h2>
+                <div class="step step_right">
+                    <img src="~/lib/img/manual/1.png" class="step__img">
+                    <div class="step__content">
+                        <h3 class="step__title">Шаг 1</h3>
+                        <p class="step__desc">Скачай приложение Outline</p>
+                        <div class="step__btns">
+                            <a href="https://s3.amazonaws.com/outline-releases/client/windows/stable/Outline-Client.exe" target="_blank" class="btn">Скачать для Windows</a>
+                            <a href="https://apps.apple.com/us/app/outline-app/id1356178125" target="_blank" class="btn">Скачать для MacOS</a>
+                        </div>
+                        <div class="step__btns">
+                            <a href="https://play.google.com/store/apps/details?id=org.outline.android.client" target="_blank" class="btn">Скачать для Android</a>
+                            <a href="https://apps.apple.com/us/app/outline-app/id1356177741" target="_blank" class="btn">Скачать для iOS</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <img src="~/lib/img/manual/2.png" class="step__img">
+                    <div class="step__content">
+                        <h3 class="step__title">Шаг 2</h3>
+                        <p class="step__desc">Попробуй тестовый период или купи подписку</p>
+                        <div class="step__btns">
+                            <a href="#tariffs" target="_blank" class="btn">Тарифный план</a>
+                            <a href="#tariffs" target="_blank" class="btn">Тестовый период</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="step step_right">
+                    <img src="~/lib/img/manual/3.png" class="step__img">
+                    <div class="step__content">
+                        <h3 class="step__title">Шаг 3</h3>
+                        <p class="step__desc">
+                            Скопируй ключ из личного кабинета (при быстрой покупке из почты) в приложение.
+                            Приятного пользования!
+                        </p>
+@*                        <div class="step__btns">
+                            <a href="https://youtu.be/N-qEkV4pctE" target="_blank" class="btn">Инструкция для Windows</a>
+                            <a href="#tariffs" target="_blank" class="btn">Инструкция для MacOs</a>
+                        </div>
+                        <div class="step__btns">
+                            <a href="https://youtu.be/iGdDQ1t1_jI" target="_blank" class="btn">Инструкция для Android</a>
+                            <a href="https://youtu.be/wEOEaURTTtc" target="_blank" class="btn">Инструкция для IOS</a>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tariffs" id="tariffs">
+        <div class="container">
+            <div class="tariffs__contenrt">
+                <h2 class="title tariffs__title">Тарифный план</h2>
+                <p class="tariffs_desc">
+                    Свободный доступ к интернету с VPN &mdash; работайте эффективней и наслаждайтесь
+                    контентом!
+                </p>
+
+                <div class="tariffs__cards">
+                    <div class="card">
+                        <div>
+                            <div class="card__period">Тестовый период</div>
+                            <div class="card__price">БЕСПЛАТНО</div>
+                            <p class="card__desc">Попробуй сейчас!</p>
+                        </div>
+
+                        <ul class="card__list">
+                            <li>Узнать, насколько он хорош</li>
+                            <li>Высокая скорость</li>
+                            <li>Работает со всеми сервисами</li>
+                            <li>Безлимитный трафик</li>
+
+
+                            <a href="@Url.Action("Index", "FastBuy")" class="btn card__btn">Выбрать</a>
+                        
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="card__period">1 месяц</div>
+                            <div class="card__price">199 &#8381</div>
+                            <p class="card__desc">Не тратить нервы целый месяц</p>
+                        </div>
+
+                        <ul class="card__list">
+                            <li>Низкая цена</li>
+                            <li>Высокая скорость</li>
+                            <li>Работает со всеми сервисами</li>
+                            <li>Безлимитный трафик</li>
+                        </ul>
+
+                        <a href="@Url.Action("Index", "FastBuy")" class="btn card__btn">Выбрать</a>
+                       
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="card__period">6 месяцев</div>
+                            <div class="card__price">1149 &#8381</div>
+                            <p class="card__desc">Самый выгодный тариф</p>
+                        </div>
+
+                        <ul class="card__list">
+                            <li>Еще дешевле</li>
+                            <li>Высокая скорость</li>
+                            <li>Работает со всеми сервисами</li>
+                            <li>Безлимитный трафик</li>
+                        </ul>
+
+
+                        <a href="@Url.Action("Index", "FastBuy")" class="btn card__btn">Выбрать</a>
+                        
+                    </div>
+
+                </div>
+
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                    <a href="@Url.Action("Index", "FastBuy")" class="btn">Активируй промокод и получи скидку <b>33%</b></a>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <div class="about__content">
+                <h2 class="title about__title">О нас</h2>
+                <div class="row">
+                    <img src="~/lib/img/about/1.png" class="about__img">
+                    <p class="about__text">
+                        Наша компания предлагает высококачественный VPN-сервис с быстрым и стабильным
+                        соединением, доступным для всех устройств. Мы гарантируем полную конфиденциальность и безопасность ваших
+                        данных, чтобы вы могли наслаждаться свободным и безопасным Интернетом в любое время и в любом месте!
+                    </p>
+                    <img src="~/lib/img/about/2.png" class="about__img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <a href="@Url.Action("Index", "Home")" class="logo">
+                    <img src="~/lib/img/logo.png" class="logo__img">
+                    <div>
+                        <div class="logo__text">Fury VPN</div>
+                        <div class="logo__desc">
+                            ИП ГАБОРЧАК ВЛАДИСЛАВ СЕРГЕЕВИЧ <br /> ИНН 615521026680 <br /> ОГРН 323619600120224
+                        </div>
+                    </div>
+                </a>
+                <div class="footer__links">
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Политика конфиденциальности</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Offer">Договор оферты</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/js/jquery.min.js"></script>
+    <script>
+        // Обработчик события нажатия на ссылку с якорем
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // Отменяем стандартное поведение ссылки
+
+                const target = document.querySelector(this.getAttribute('href')); // Получаем целевой элемент по якорю
+
+                if (target) {
+                    // Плавная прокрутка к целевому элементу
+                    window.scrollTo({
+                        top: target.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>

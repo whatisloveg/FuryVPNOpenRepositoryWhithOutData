@@ -1,0 +1,11 @@
+
+--------------------------31.08.2023 20:37:53  
+Удаление пользователей произведено
+--------------------------
+
+--------------------------05.09.2023 18:15:07  
+System.Net.WebException: The remote server returned an error: (404) Not Found.
+   at System.Net.HttpWebRequest.GetResponse()
+   at FuryVPN2.Services.SubscriptionManagementService.DeleteOutlineUser(String apiUrl, String IdOnServer) in C:\Users\whatislove\source\repos\FuryVPN2\FuryVPN2\Services\SubscriptionManagementService.cs:line 247
+   at FuryVPN2.Services.AutoDeleteKeyService.StartAutoDelete() in C:\Users\whatislove\source\repos\FuryVPN2\FuryVPN2\Services\AutoDeleteKeyService.cs:line 83
+--------------------------

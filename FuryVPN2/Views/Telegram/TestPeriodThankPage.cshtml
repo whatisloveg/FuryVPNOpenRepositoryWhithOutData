@@ -1,0 +1,110 @@
+﻿<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="~/lib/css/link-font.css">
+<link rel="stylesheet" href="~/lib/css/style.css">
+<link rel="icon" type="image/x-icon" href="~/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+<title>Спасибо за покупку</title>
+</head>
+
+<body>
+    @section scripts {
+        <script>
+            var screenSize = window.innerWidth; // Получаем ширину окна браузера
+
+            if (screenSize < 768) {
+                // Если ширина экрана меньше 768px, показываем блок
+                document.getElementById("conditionalBlockMobile").style.display = "block";
+                document.getElementById("conditionalBlockPC").style.display = "none";
+            } else {
+                // В противном случае скрываем блок
+                document.getElementById("conditionalBlockMobile").style.display = "none";
+                document.getElementById("conditionalBlockPC").style.display = "block";
+            }
+        </script>
+    }
+        <div id="conditionalBlockMobile">
+            <nav class="nav">
+                <div class="container">
+                    <div class="row">
+                        <ul class="nav__links">
+                            <li>
+                                <a class="nav__link link" style="font-size:12px" href="#manual">Инструкция</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" style="font-size:12px" href="#tariffs">Тарифы</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" style="font-size:12px" href="https://t.me/furyvpnsupport" target="_blank">Поддержка</a>
+                            </li>
+                            <li>
+
+                                <a class="nav__link btn" style="font-size:12px" href="@Url.Action("Login", "Telegram")">Telegram Авторизация</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+        <div id="conditionalBlockPC">
+            <nav class="nav">
+                <div class="container">
+                    <div class="row">
+                        <a href="@Url.Action("Index", "Home")" class="logo">
+                            <img src="~/lib/img/logo.png" class="logo__img">
+                            <span class="logo__text">Fury VPN</span>
+                        </a>
+                        <ul class="nav__links">
+                            <li>
+                                <a class="nav__link link" href="#manual">Инструкция</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" href="#tariffs">Тарифы</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" href="https://t.me/furyvpnsupport" target="_blank">Поддержка</a>
+                            </li>
+                            <li>
+
+                                <a class="nav__link btn" href="@Url.Action("Login", "Telegram")">Telegram Авторизация</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    <section class="section-error">
+        <div class="container">
+            <div class="row">
+                <img class="section-error__image" src="~/lib/img/thank/1.png">
+                <div class="section-error__content">
+                    <h1 class="title">Тестовый период получен</h1>
+                    <p class="text" style="margin-top: 20px">
+                        Теперь вы можете нажать на кнопку в личном кабинете чтобы посмотреть и добавить ключ в приожение Outline,
+                        там же вы можете увидеть дату окончания подписки. Вы можете руководствоваться <a style="color: #fff" href="./#manual">инструкцией</a>.
+                        <br>
+                        Приятного пользования!
+                    </p>
+                    <a class="nav__link btn" style="margin-top: 20px; font-size: 20px"
+                       href="@Url.Action("PersonalArea", "Telegram",
+                            new{ userId = ViewBag.userId})">Вернуться в личный кабинет</a>
+                </div>
+                <img class="section-error__image" src="~/lib/img/thank/2.png">
+            </div>
+        </div>
+    </section>
+
+    <script src="~/lib/js/jquery.min.js"></script>
+</body>
+
+</html>

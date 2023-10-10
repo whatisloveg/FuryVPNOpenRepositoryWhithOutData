@@ -1,0 +1,383 @@
+﻿
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="~/lib/css/link-font.css">
+    <link rel="stylesheet" href="~/lib/css/style.css">
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <title>Личный кабинет</title>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(93814140, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+            ecommerce: "dataLayer"
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/93814140" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+
+
+
+<body>
+    @section scripts {
+        <script>
+            var screenSize = window.innerWidth; // Получаем ширину окна браузера
+
+            if (screenSize < 768) {
+                // Если ширина экрана меньше 768px, показываем блок
+                document.getElementById("conditionalBlockMobile").style.display = "block";
+                document.getElementById("conditionalBlockPC").style.display = "none";
+            } else {
+                // В противном случае скрываем блок
+                document.getElementById("conditionalBlockMobile").style.display = "none";
+                document.getElementById("conditionalBlockPC").style.display = "block";
+            }
+        </script>
+    }
+        <div id="conditionalBlockMobile">
+@*            <nav class="nav">
+                <div class="container">
+                    <div class="row">
+                        <ul class="nav__links">
+                            <li>
+                                <a class="nav__link link" style="font-size:12px" href="#manual">Инструкция</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" style="font-size:12px" href="#tariffs">Тарифы</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" style="font-size:12px" href="https://t.me/furyvpnsupport" target="_blank">Поддержка</a>
+                            </li>
+                            <li>
+
+                            <a class="nav__link link" style="font-size:12px" href="@Url.Action("Index", "Home")" target="_blank">Выйти</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>*@
+
+        </div>
+        <div id="conditionalBlockPC">
+            <nav class="nav">
+                <div class="container">
+                    <div class="row">
+                        <a href="@Url.Action("Index", "Home")" class="logo">
+                            <img src="~/lib/img/logo.png" class="logo__img">
+                            <span class="logo__text">Fury VPN</span>
+                        </a>
+                        <ul class="nav__links">
+                            <li>
+                            <a class="nav__link link" href="@Url.Action("ToManual", "Home")">Инструкция</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" href="#tariffs">Тарифы</a>
+                            </li>
+                            <li>
+                                <a class="nav__link link" href="https://t.me/furyvpnsupport" target="_blank">Поддержка</a>
+                            </li>
+                            <li>
+
+                            <a class="nav__link link" href="@Url.Action("Index", "Home")" target="_blank">Выйти</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    <section class="lk-desktop" style="padding-top:150px; padding-bottom:180px">
+        <div class="container">
+            <div class="lk">
+                <div class="lk__second">
+                    <div class="lk__block">
+                        <div class="lk__block-content">
+                            <h4 class="lk__subtitle">Ваш логин:</h4>
+                            <p style="margin-top: 10px" class="lk__text">@@@ViewBag.UserName</p>
+                        </div>
+                        @*                        <button class="btn">Управление</button>*@
+                    </div>
+                    <div class="lk__block">
+                        <img src="~/lib/img/lk/autoPay.png" class="lk__img" style="margin-bottom: 5px; filter:drop-shadow(0 0 3px rgba(26, 115, 199, 0.2))">
+                        @*<button class="btn">Скачать QR-Код</button>*@
+                        @if (ViewBag.SwitchAutoPayStatusButtonText != null)
+                        {
+                            <a href="@Url.Action("CancelAutoSubscription", "Telegram", new{ userId = @ViewBag.UserId})" class="btn lk__btn">@ViewBag.SwitchAutoPayStatusButtonText</a>
+                        }
+                           
+
+                    </div>
+                    <div class="lk__block">
+                        <img src="~/lib/img/lk/config.png" class="lk__img">
+                        @*<button class="btn">Скачать конфиг.</button>*@
+                        @if (ViewBag.EndOfSubcription != "У вас нет активных подписок")
+                        {
+                            <a href="@Url.Action("GetProduct", "Telegram", new{ userId = @ViewBag.UserId})" class="btn lk__btn">Посмотреть ключ</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("GetProduct", "Telegram", new{ userId = @ViewBag.UserId})" class="btn lk__btn">Посмотреть ключ</a>
+                        }
+
+                    </div>
+                </div>
+                <div class="lk__main">
+                    <h2 class="lk__subscription">@ViewBag.EndOfSubcription<span></span></h2>
+                    <div class="lk__text">Доступные тарифы</div>
+                    <h3 style="justify-content: center; align-items: center; text-align: center; margin-top:10px; color: #FF5A5A">
+                        @ViewBag.Error
+                    </h3>
+                    <div class="lk__tariff">
+                        <div class="lk__period">1 месяц</div>
+                        @if (ViewBag.PromoExistence == null || ViewBag.PromoExistence == "Промокода не существует")
+                        {
+                            <div class="lk__price">199р.</div>
+                            <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "monthWithOutPromo"})"
+                               class="lk__link">
+                                @if (ViewBag.EndOfSubcription != "У вас нет активных подписок")
+                                {
+                                    <span>Продлить</span>
+                                }
+                                else
+                                {
+                                    <span>Купить</span>
+                                }
+                            </a>
+                        }
+                        else
+                        {
+                            <div class="lk__price"><s>199р.</s> <b> @ViewBag.PriceWithDiscount р.</b></div>
+                            <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "monthWithPromo",
+                                                                                        promocode = $"{ViewBag.PromoText}"})"
+                               class="lk__link">
+                                @if (ViewBag.EndOfSubcription != "У вас нет активных подписок")
+                                {
+                                    <span>Продлить</span>
+                                }
+                                else
+                                {
+                                    <span>Купить</span>
+                                }
+                            </a>
+                        }
+                    </div>
+
+                    <div class="lk__tariff">
+                        <div class="lk__period">3 месяца</div>
+                        <div class="lk__price">499р.</div>
+                        <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "3months"})"
+                           class="lk__link">
+                            @if (ViewBag.EndOfSubcription != "У вас нет активных подписок")
+                            {
+                                <span>Продлить</span>
+                            }
+                            else
+                            {
+                                <span>Купить</span>
+                            }
+                        </a>
+                    </div>
+
+                    <div class="lk__tariff">
+                        <div class="lk__period">6 месяцев</div>
+                        <div class="lk__price">1449р.</div>
+                        <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "6months"})"
+                           class="lk__link">
+                            @if (ViewBag.EndOfSubcription != "У вас нет активных подписок")
+                            {
+                                <span>Продлить</span>
+                            }
+                            else
+                            {
+                                <span>Купить</span>
+                            }
+                        </a>
+                    </div>
+
+                    <div class="lk__tariff">
+                        <div class="lk__period">1 год</div>
+                        <div class="lk__price">1999р.</div>
+                        <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "year"})"
+                           class="lk__link">
+                            @if (ViewBag.EndOfSubcription != "У вас нет активных подписок")
+                            {
+                                <span>Продлить</span>
+                            }
+                            else
+                            {
+                                <span>Купить</span>
+                            }
+                        </a>
+                    </div>
+                     <div class="lk__tariff">
+                    <div class="lk__period">5 дней</div>
+                    <div class="lk__price">БЕСПЛАТНО</div>
+                        <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "freeTrial"})" class="lk__link"><span>Получить</span></a>
+                    </div>
+
+                    @using (Html.BeginForm("CheckPromoCode", "Telegram", FormMethod.Post, new { @class = "form-promocode row", @style ="margin-top:10px"}))
+                    {
+                        @Html.TextBox("code",null, new { @class = "lk__input", placeholder = "Промокод..." })
+                        <input type="hidden" name="userId" value="@ViewBag.UserId" />
+                        <input type="submit" value="Проверить" class="btn" autocomplete="off" />
+                    }
+                    <h3>@ViewBag.PromoExistence</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lk-mobile" style="padding-top:50px">
+        <div class="container">
+            <h1 class="title">Личный кабинет</h1>
+            <p class="lk__mail">@@@ViewBag.UserName</p>
+            <h3 style="justify-content: center; align-items: center; text-align: center; margin-top:10px; color: #FF5A5A">
+                @ViewBag.Error
+            </h3>
+            <a href="@Url.Action("GetProduct", "Telegram", new{ userId = @ViewBag.UserId})" class="btn lk__btn">Посмотреть ключ</a>
+            @if (ViewBag.SwitchAutoPayStatusButtonText != null)
+            {
+                <a href="@Url.Action("CancelAutoSubscription", "Telegram", new{ userId = @ViewBag.UserId})" class="btn lk__btn">@ViewBag.SwitchAutoPayStatusButtonText</a>
+            }
+
+
+            <div class="lk__tariffs">
+                <div class="lk__tariff">
+                    <div class="lk__period">1 месяц</div>
+                    @if (ViewBag.PromoExistence == null || ViewBag.PromoExistence == "Промокода не существует")
+                    {
+                        <div class="lk__price">199р.</div>
+                        <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "monthWithOutPromo"})"
+                           class="lk__link">
+                            @if (ViewBag.EndOfSubcription != "У вас нет активных подписок")
+                            {
+                                <span>Продлить</span>
+                            }
+                            else
+                            {
+                                <span>Купить</span>
+                            }
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="lk__price"><s>199р.</s> <b> @ViewBag.PriceWithDiscount р.</b></div>
+                        <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "monthWithPromo",
+                                                                                        promocode = $"{ViewBag.PromoText}"})"
+                           class="lk__link">
+                            @if (ViewBag.EndOfSubcription != "У вас нет активных подписок")
+                            {
+                                <span>Продлить</span>
+                            }
+                            else
+                            {
+                                <span>Купить</span>
+                            }
+                        </a>
+                    }
+                </div>
+
+                <div class="lk__tariff">
+                    <div class="lk__period">3 месяца</div>
+                    <div class="lk__price">499р.</div>
+                    <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "3months"})"
+                       class="lk__link">
+                        @if (ViewBag.EndOfSubcription != "У вас нет активных подписок")
+                        {
+                            <span>Продлить</span>
+                        }
+                        else
+                        {
+                            <span>Купить</span>
+                        }
+                    </a>
+                </div>
+
+                <div class="lk__tariff">
+                    <div class="lk__period">6 месяцев</div>
+                    <div class="lk__price">1449р.</div>
+                    <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "6months"})"
+                       class="lk__link">
+                        @if (ViewBag.EndOfSubcription != "У вас нет активных подписок")
+                        {
+                            <span>Продлить</span>
+                        }
+                        else
+                        {
+                            <span>Купить</span>
+                        }
+                    </a>
+                </div>
+
+                <div class="lk__tariff">
+                    <div class="lk__period">1 год</div>
+                    <div class="lk__price">1999р.</div>
+                    <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "year"})"
+                       class="lk__link">
+                        @if (ViewBag.EndOfSubcription != "У вас нет активных подписок")
+                        {
+                            <span>Продлить</span>
+                        }
+                        else
+                        {
+                            <span>Купить</span>
+                        }
+                    </a>
+                </div>
+                <div class="lk__tariff">
+                    <div class="lk__period">5 дней</div>
+                    <div class="lk__price">БЕСПЛАТНО</div>
+                    <a href="@Url.Action("BuyAction", "Telegram", new{ userId = @ViewBag.UserId, tariff = "freeTrial"})"
+                       class="lk__link">
+                            <span>Получить</span>
+                    </a>
+                </div>
+
+                @*                    <div class="lk__tariff">
+                <div class="lk__period">Тестовый день</div>
+                <div class="lk__price">10р.</div>
+                <a href="@Url.Action("BuyConfig", "Home", new{ userId = @ViewBag.UserId, tariff = "day", promocode = "nonecode"})" class="lk__link"><span>Получить</span></a>
+                </div>*@
+            </div>
+
+            <p class="lk__subscription">@ViewBag.EndOfSubcription<span></span></p>
+
+            @using (Html.BeginForm("CheckPromoCode", "Telegram", FormMethod.Post, new { @class = "form-promocode row" }))
+            {
+                @Html.TextBox("code",null, new { @class = "lk__input", placeholder = "Промокод..." })
+                <input type="hidden" name="userId" value="@ViewBag.UserId" />
+                <input type="submit" value="Проверить" class="btn" autocomplete="off" />
+            }
+            <h3>
+                @ViewBag.PromoExistence
+            </h3>
+        </div>
+    </section>
+    <script src="~/lib/js/jquery.min.js"></script>
+</body>
+
+
+
+</html>

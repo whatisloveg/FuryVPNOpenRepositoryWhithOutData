@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="~/lib/css/link-font.css">
+    <link rel="stylesheet" href="~/lib/css/style.css">
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <title>Почта</title>
+</head>
+
+<body>
+    <section class="login">
+        <div class="container">
+            <div class="row">
+                <div class="big-logo">
+                    <img src="~/lib/img/logo-big.png" alt="" class="big-logo__img">
+                    <h1 class="big-logo__title" style="text-align: center;">FuryVPN</h1>
+                </div>
+                <div class="form-content">
+                    <h1 class="form-content__title" style="text-align: center;">Нам нужна ваша почта, чтобы отправлять чеки ваших покупок</h1>
+                      
+                            @using (Html.BeginForm("SetEmail", "Telegram", FormMethod.Post, new { @class = "form" }))
+                            {
+
+
+                                @Html.TextBoxFor(email => email, new { @class = "form__input", name="email", type="email", placeholder = "Введите почту" })
+                        <h4 style="text-align: center; margin-bottom: 15px; color: #FF5A5A">
+                            @ViewBag.Error
+                        </h4>
+                                <button style="margin-left: 80px; margin-top: 10px" id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary" name="userId"
+                                        value="@ViewBag.Id">Отправить</button>
+
+
+                            }
+
+                        
+                        @*<form class="form" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-floating">
+                                <input asp-for="Input.Email" class="form__input" autocomplete="username" placeholder="Почта" aria-required="true" />
+
+                            </div>
+                            <div class="form__btns">
+                                <button type="submit" class="w-100 btn btn-lg btn-primary">Восстановить</button>
+                                <a asp-page="./Login" class="link">Вход</a>
+                            </div>
+                        </form>*@
+                    <p class="quick-purchase__subdesc">
+                        Если вы не хотите получать чеки, оставте поле пустым(вы всегда сможете получить чек, отправив запрос в
+                        <a href="https://t.me/furyvpnsupport">тех.поддержку</a>)
+                        <br />
+                    </p>
+                    <p class="quick-purchase__subdesc">
+
+                        Нажимая кнопку «Отправить», вы соглашаетесь с <a asp-area="" asp-controller="Home" asp-action="Privacy" target="_blank">
+                            политикой
+                            обработки персональных
+                            данных
+                        </a> и с <a asp-area="" asp-controller="Home" asp-action="Offer" target="_blank">договором оферты</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="~/lib/js/jquery.min.js"></script>

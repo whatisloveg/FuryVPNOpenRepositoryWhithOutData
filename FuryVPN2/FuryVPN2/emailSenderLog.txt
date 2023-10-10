@@ -1,0 +1,26 @@
+
+--------------------------03.10.2023 23:48:38  
+System.Net.Mail.SmtpException: Failure sending mail.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Попытка установить соединение была безуспешной, т.к. от другого компьютера за требуемое время не получен нужный отклик, или было разорвано уже установленное соединение из-за неверного отклика уже подключенного компьютера..
+ ---> System.Net.Sockets.SocketException (10060): Попытка установить соединение была безуспешной, т.к. от другого компьютера за требуемое время не получен нужный отклик, или было разорвано уже установленное соединение из-за неверного отклика уже подключенного компьютера.
+   at System.Net.Sockets.NetworkStream.Read(Span`1 buffer)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Span`1 buffer)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](TIOAdapter adapter, Memory`1 buffer)
+   at System.Net.Security.SslStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.TlsStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at System.Net.DelegatedStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.BufferedReadStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.DataStopCommand.Send(SmtpConnection conn)
+   at System.Net.Mail.SmtpConnection.OnClose(Object sender, EventArgs args)
+   at System.Net.ClosableStream.Close()
+   at System.Net.Mail.MailWriter.Close()
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at FuryVPN2.Services.EmailSender.SendProduct(String toEmail, DateTime dateOfEnd, String accessUrl, String cancelSubscriptionLink) in C:\Users\whatislove\source\repos\FuryVPN2\FuryVPN2\Services\EmailSender.cs:line 80
+--------------------------
