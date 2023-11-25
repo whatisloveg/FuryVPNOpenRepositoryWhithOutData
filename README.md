@@ -1,6 +1,7 @@
 # FuryVPNOpenRepositoryWhithOutData
 Основная страница
-![image](https://github.com/whatisloveg/FuryVPN2/assets/95077912/9c91dff0-e5c6-4c7d-a490-302c12ee2a36)
+![image](https://github.com/whatisloveg/FuryVPNOpenRepositoryWhithOutData/assets/95077912/9e188196-c6dc-4d10-bc47-f960f79fdd79)
+
 
 ____________________________________________________________________________________________________
 FastBuy страница
