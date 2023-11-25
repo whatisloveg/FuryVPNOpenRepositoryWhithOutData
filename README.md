@@ -10,4 +10,4 @@ FastBuy страница
 ____________________________________________________________________________________________________
 
 Личный кабинет
-![Group 1](https://github.com/whatisloveg/FuryVPN2/assets/95077912/c3e794e5-060a-4eb0-8d84-124e3178ba31)
+![image](https://github.com/whatisloveg/FuryVPNOpenRepositoryWhithOutData/assets/95077912/b2f9385b-10b1-474d-af92-67dd302cbfe5)
