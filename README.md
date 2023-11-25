@@ -5,7 +5,7 @@
 
 ____________________________________________________________________________________________________
 FastBuy страница
-![image](https://github.com/whatisloveg/FuryVPNOpenRepositoryWhithOutData/assets/95077912/b343d370-e198-49b7-b881-8d88590e817b)
+![image](https://github.com/whatisloveg/FuryVPNOpenRepositoryWhithOutData/assets/95077912/3f43e3cf-557c-4a8e-9d47-fa8737f71733)
 
 ____________________________________________________________________________________________________
 
